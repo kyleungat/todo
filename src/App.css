@@ -1,38 +1,272 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+    height: 100vh;
+    display: flex;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hamburger{
+    display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.folder-container{
+    width: 30%;
+    background: white;
+    overflow-y: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.todo-container {
+    width: 70%;
+    background: #eeeeee;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+    text-transform: capitalize;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    text-shadow: 2px 2px #777777,
+                 3px 3px #777777,
+                 4px 4px #777777,
+                 5px 5px #777777;
+
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-container{
+    position: relative;
+    margin: 10% auto;
+    text-align: center;
+    max-width: 80%;
+    padding: 0;
+    border: 2px solid black;
+}
+
+.search-container input{
+    padding: 0.5em 0.2em 0.5em 20%;
+    width: 100%;
+    font-size: 1em;
+    border:none;
+}
+
+.search-container i{
+    position: absolute;
+    left: 5%;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.new-folder-btn{
+    display: block;
+    margin: 2em auto;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.new-folder-btn:hover, .new-folder-btn:active{
+    color: white;
+    background: black;
+}
+
+.folder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+    margin: 1em 0;
+    transition: all 0.3 ease;
+}
+
+.folder:hover, .folder.active {
+    color: white;
+    background: black;
+}
+
+.folder:hover input[type="text"], .folder.active input[type="text"]{
+    color: white;
+}
+
+.folder:hover i{
+    display: inline;
+}
+
+.folder input[type="text"]{
+    width: 80%;
+    padding: 0.5em;
+    padding-right: 0;
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    text-transform: capitalize;
+    font-family: 'Neuton', serif;
+}
+
+.folder input[type="text"]:focus{
+    outline: none;
+}
+
+.folder i{
+    cursor: pointer;
+    display: none;
+}
+
+.todo-container h2{
+    margin: 0.5em 0;
+    padding: 0 2em;
+    font-size: 3rem;
+    font-family: 'Neuton', serif;
+}
+
+.hr{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: 2px solid black;
+}
+
+.toolbar{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.toolbar i{
+    cursor: pointer;
+}
+
+.toolbar i:hover{
+    color: #777777;
+}
+
+.toolbar i.disabled{
+    color: #777777;
+}
+
+.trash{
+    position: relative;
+}
+
+.trash-number{
+    position: absolute;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 1rem;
+    padding: 0.2rem 0.4rem;
+    right: -30%;
+    top: -25%;
+}
+
+.todo-list {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.todo {
+    border-bottom: 2px solid black;
+    font-size: 1.5em;
+    padding-bottom: 4px;
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.todo input[type="text"]{
+    font-size: 1.4em;
+    width: 80%;
+    font-family: 'Caveat Brush', cursive;
+    color: #222222;
+    background: transparent;
+    border: none;
+}
+
+.todo input[type="text"]:focus{
+    outline-color:  #444444;
+}
+
+
+.todo input[type="checkbox"]{
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin: 0 1em;
+}
+
+.check::after{
+    content: "";
+    display: block;
+    background: white;
+    border: 1px solid black;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    color: transparent;
+}
+
+.check:checked::after{
+    content: url('./tick.svg');
+}
+
+.todo input[type="checkbox"]:checked + input[type="text"]{
+    text-decoration: line-through;
+}
+
+.delete{
+    display: none;
+    transition: all 0.2s linear;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 100%;
+    cursor: pointer;
+}
+
+.todo:hover .delete{
+    display: block;
+}
+
+.copyright{
+    text-align: center;
+}
+
+@media screen and (max-width: 576px){
+    .hamburger{
+        display: block;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 2em;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .folder-container{
+        transform: translateX(-100%);
+        width: 0;
+    }
+
+    .folder-container.active{
+        transform: translateX(0);
+        width: 100%;
+    }
+
+    .todo-container.active {
+        width: 100%;
+    }
+
+    .todo-container {
+        width: 0;
+    }
 }
