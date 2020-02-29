@@ -51,18 +51,10 @@ function undoable(reducer) {
     }
 }
 
-const initState = {
-    // id: null,
-    // nextId: nullLiteralTypeAnnotation,
-    // list: []
-};
+const initState = {};
 
 const todoReducer = (state = initState, action) => {
     switch (action.type) {
-        // case SET_DISPLAY: {
-        //     console.log("updating")
-        //     return action.payload.item;
-        // }
         case ADD_TODO: {
             const todo = { id: state.nextId, text: "", isComplete: false }
             return {

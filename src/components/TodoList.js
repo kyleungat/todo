@@ -1,12 +1,21 @@
 import React from 'react'
 import Todo from './Todo'
+import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
-function TodoList({todolist, folderId}) {
+function TodoList({ todolist, folderId }) {
     return (
         <div className="todo-list">
-            {todolist && todolist.map((element) => {
-                return <Todo key={`${folderId}${element.id}`} todo={element} />
-            })}
+            <TransitionGroup>
+                {todolist && todolist.map((element) => (
+                    <CSSTransition
+                        key={`${folderId}${element.id}`}
+                        timeout={300}
+                        classNames="item"
+                    >
+                    <Todo todo={element} />
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
         </div>
     )
 }

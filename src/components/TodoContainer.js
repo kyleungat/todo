@@ -12,14 +12,15 @@ function TodoContainer({isActive}) {
 
     return (
         <div className={`todo-container ${isActive && "active"}`}>
-            {folder &&
+            {folder ?
                 <>
                 <h2 className="title">{folder.name}</h2>
                 <div className="hr"></div>
                 <ToolBar />
                 <TodoList todolist={todo.list} folderId={folder.id}/>
                 <div className="copyright">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-                </>
+                </>:
+                <p className="splash-msg">select a folder</p>
             }
         </div>
     )

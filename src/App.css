@@ -20,6 +20,7 @@
 }
 
 .todo-container {
+    position: relative;
     width: 70%;
     background: #eeeeee;
     overflow-y: auto;
@@ -120,6 +121,18 @@
     display: none;
 }
 
+.splash-msg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Neuton', serif;
+    font-size: 3em;
+    text-transform: capitalize;
+    font-style: italic;
+}
+
 .todo-container h2{
     margin: 0.5em 0;
     padding: 0 2em;
@@ -201,7 +214,7 @@
     height: 20px;
     width: 20px;
     position: relative;
-    margin: 0 1em;
+    margin: 0 1.5em;
 }
 
 .check::after{
@@ -210,8 +223,8 @@
     background: white;
     border: 1px solid black;
     position: absolute;
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     color: transparent;
 }
 
@@ -269,4 +282,29 @@
     .todo-container {
         width: 0;
     }
+
+    .splash-msg{
+        font-size: 2em;
+    }
+}
+
+/* CSS Transition */
+
+.item-enter {
+  /* opacity: 0; */
+  transform: translateX(-80%);
+}
+.item-enter-active {
+  /* opacity: 1; */
+  /* transition: opacity 300ms ease-in; */
+  transform: translateX(0);
+  transition: transform 300ms ease-in;
+
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 100ms ease-in;
 }

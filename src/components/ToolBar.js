@@ -7,7 +7,6 @@ function ToolBar() {
     const past = useSelector(state => state.todo.past);
     const future = useSelector(state => state.todo.future);
 
-    console.log(past);
     return (
         <div className="toolbar">
             {/* <i className="fas fa-list-ol"></i> */}
